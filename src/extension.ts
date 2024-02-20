@@ -31,7 +31,6 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         const documentName: string = activeEditor.document.fileName.toString();
-        vscode.window.showInformationMessage(`Current document: ${documentName}`);
 
         const selection = activeEditor.selection;
         const text = activeEditor.document.getText(selection);
