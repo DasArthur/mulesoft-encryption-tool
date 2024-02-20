@@ -55,10 +55,9 @@ export function activate(context: vscode.ExtensionContext) {
         }
         
         if(previous == "No" || params.algorithm == null){
-            const algorithm = await vscode.window.showQuickPick(['AES'],{ placeHolder: 'Enter algorithm (e.g., AES)' });
-            const mode = await vscode.window.showQuickPick(["CBC"],{ placeHolder: 'Enter mode (e.g., CBC)' });
-        
-            const key = await vscode.window.showInputBox({ prompt: 'Enter key' });
+            const algorithm = await vscode.window.showQuickPick(['AES', 'Blowfish', 'DES', 'DESede', 'RC2', 'RCA'],{ placeHolder: 'Enter algorithm (e.g., AES)' });
+            const mode = await vscode.window.showQuickPick(["CBC", "CFB", "ECB", "OFB"],{ placeHolder: 'Enter mode (e.g., CBC)' });        
+            const key = await vscode.window.showInputBox({ prompt: 'Enter Encryption Key' });
             const useRandomIV = await vscode.window.showQuickPick(['No', 'Yes'], { placeHolder: 'Use random IV?' });
 
             params = {
