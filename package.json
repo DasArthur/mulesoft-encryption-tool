@@ -1,0 +1,55 @@
+{
+  "name": "mule-encryption-tool",
+  "displayName": "Mule Encryption Tool",
+  "description": "Encrypt and Decrypt secret properties with ease",
+  "author": "ArtursP",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mule-encryption-tool.encryptDecrypt",
+        "title": "Encrypt/Decrypt",
+        "category": "Mule Encryption Tool"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "mule-encryption-tool:canEncryptDecrypt",
+          "command": "mule-encryption-tool.encryptDecrypt",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.86.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
