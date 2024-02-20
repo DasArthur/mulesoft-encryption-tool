@@ -2,7 +2,8 @@
   "name": "mule-encryption-tool",
   "displayName": "Mule Encryption Tool",
   "description": "Encrypt and Decrypt secret properties with ease",
-  "author": "ArtursP",
+  "author": "ArthurSpark",
+  "license": "MIT",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.86.0"
