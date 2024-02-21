@@ -5,9 +5,18 @@ This extension for Visual Studio Code provides a convenient way to encrypt and d
 ## How To
 
 1.Select text in your YAML file
-2.Press "CTRL + SHIFT + P"
-3.type "Mule Encryption Tool: Encrypt/Decrypt"
+
+![Mulesoft Encryption Tool Usage](images/image01.png)
+
+
+2.Press "CTRL + SHIFT + P" and type "Mule Encryption Tool: Encrypt/Decrypt"
+![Mulesoft Encryption Tool Usage](images/image02.png)
+
+![Mulesoft Encryption Tool Usage](images/image04.png)
+
 4.That is it
+![Mulesoft Encryption Tool Usage](images/image05.png)
+
 
 ## Features
 

@@ -46,6 +46,12 @@ export function activate(context: vscode.ExtensionContext) {
         // const method = await vscode.window.showInputBox({ prompt: 'Enter method (string/file/file-level)' });
         const operation = await vscode.window.showQuickPick(['encrypt', 'decrypt'],{ placeHolder: 'Enter operation (encrypt/decrypt)' });
 
+        if (!operation) {
+            // User pressed ESC, end the action
+            return;
+        }
+
+
         let params: { operation?: string; algorithm?: string; mode?: string; key?: string; useRandomIV?: string; } = context.workspaceState.get(getStateKey(activeEditor.document)) || {};
 
         let previous;
@@ -55,9 +61,25 @@ export function activate(context: vscode.ExtensionContext) {
         
         if(previous == "No" || params.algorithm == null){
             const algorithm = await vscode.window.showQuickPick(['AES', 'Blowfish', 'DES', 'DESede', 'RC2', 'RCA'],{ placeHolder: 'Enter algorithm (e.g., AES)' });
-            const mode = await vscode.window.showQuickPick(["CBC", "CFB", "ECB", "OFB"],{ placeHolder: 'Enter mode (e.g., CBC)' });        
+            if (!algorithm) {
+                // User pressed ESC, end the action
+                return;
+            }
+            const mode = await vscode.window.showQuickPick(["CBC", "CFB", "ECB", "OFB"],{ placeHolder: 'Enter mode (e.g., CBC)' });
+            if (!mode) {
+                // User pressed ESC, end the action
+                return;
+            }        
             const key = await vscode.window.showInputBox({ prompt: 'Enter Encryption Key' });
+            if (key === undefined) {
+                // User pressed ESC, end the action
+                return;
+            }
             const useRandomIV = await vscode.window.showQuickPick(['No', 'Yes'], { placeHolder: 'Use random IV?' });
+            if (!useRandomIV) {
+                // User pressed ESC, end the action
+                return;
+            }
 
             params = {
                 operation,
