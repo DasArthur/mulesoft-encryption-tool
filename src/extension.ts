@@ -99,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
         // Construct the command
-        let command = `java -cp "${jarPath}" com.mulesoft.tools.SecurePropertiesTool 'string' ${operation} ${params.algorithm} ${params.mode} "${params.key}" "${value}"`;
+        let command = `java -cp "${jarPath}" "com.mulesoft.tools.SecurePropertiesTool" "string" "${operation}" "${params.algorithm}" "${params.mode}" "${params.key}" "${value}"`;
         if (params.useRandomIV === 'Yes') {
             command += ' --use-random-iv';
         }
