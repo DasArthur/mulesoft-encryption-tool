@@ -5,7 +5,7 @@
   "author": "ArthurSpark",
   "publisher": "ArthurSpark",
   "license": "MIT",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.85.0"
@@ -16,6 +16,17 @@
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "mule",
+    "mulesoft",
+    "encryption",
+    "decrypt",
+    "encrypt",
+    "properties",
+    "secure properties",
+    "encryption tool",
+    "mule 4"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",

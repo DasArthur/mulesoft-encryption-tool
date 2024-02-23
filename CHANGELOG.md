@@ -11,3 +11,6 @@ All notable changes to the "mulesoft-encryption-tool" extension will be document
 
 - Fixed error for Windows OS
 
+## [1.0.5] - 2021-10-14
+
+- Updated package.json
