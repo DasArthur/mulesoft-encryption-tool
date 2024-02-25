@@ -5,8 +5,10 @@
   "author": "ArthurSpark",
   "publisher": "ArthurSpark",
   "license": "MIT",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "icon": "images/icon.png",
+  "enabledApiProposals": [
+	],
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -28,21 +30,76 @@
     "encryption tool",
     "mule 4"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:*.yaml",
+    "workspaceContains:**/*.yaml",
+    "onLanguage:yaml",
+    "onLanguage:als"
+	],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Mule Encryption Tool Settings",
+      "properties": {
+        "muleEncryptionTool.defaultAlgorithm": {
+          "type": "string",
+          "default": "AES",
+          "description": "Default algorithm for encryption/decryption."
+        },
+        "muleEncryptionTool.defaultMode": {
+          "type": "string",
+          "default": "CBC",
+          "description": "Default mode for encryption/decryption."
+        },
+        "muleEncryptionTool.defaultUseRandomIV": {
+          "type": "boolean",
+          "default": false,
+          "description": "Default Use Random IV for encryption/decryption."
+        }
+      }
+    },
     "commands": [
       {
-        "command": "mule-encryption-tool.encryptDecrypt",
-        "title": "Encrypt/Decrypt",
+        "command": "mule-encryption-tool.encrypt",
+        "title": "Encrypt",
+        "category": "Mule Encryption Tool"
+      },
+      {
+        "command": "mule-encryption-tool.decrypt",
+        "title": "Decrypt",
+        "category": "Mule Encryption Tool"
+      },
+      {
+        "command": "mule-encryption-tool.configureUnittestArgs",
+        "title": "Configure Algorithm (AES Default), Mode(CBC) or RandomIV Arguments",
+        "category": "Mule Encryption Tool"
+      },
+      {
+        "command": "mule-encryption-tool.setEncKey",
+        "title": "Set/Reset Mule Enc Key For File",
         "category": "Mule Encryption Tool"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "when": "mule-encryption-tool:canEncryptDecrypt",
-          "command": "mule-encryption-tool.encryptDecrypt",
+          "when": "mule-encryption-tool:encrypt",
+          "command": "mule-encryption-tool.encrypt",
+          "group": "navigation"
+        },
+        {
+          "when": "mule-encryption-tool:decrypt",
+          "command": "mule-encryption-tool.decrypt",
+          "group": "navigation"
+        },
+        {
+          "when": "mule-encryption-tool:configureUnittestArgs",
+          "command": "mule-encryption-tool.configureUnittestArgs",
+          "group": "navigation"
+        },
+        {
+          "when": "mule-encryption-tool:setEncKey",
+          "command": "mule-encryption-tool.setEncKey",
           "group": "navigation"
         }
       ]

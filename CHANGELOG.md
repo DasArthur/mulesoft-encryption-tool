@@ -14,3 +14,8 @@ All notable changes to the "mulesoft-encryption-tool" extension will be document
 ## [1.0.5] - 2021-10-14
 
 - Updated package.json
+
+## [1.0.6] - 2021-10-14
+
+- Redefined of how to set enc key to remove re-entering details
+- Added testing to see if all secure properties are correctly set so that we don't get bad deployments
