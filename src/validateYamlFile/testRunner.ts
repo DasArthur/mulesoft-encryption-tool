@@ -64,7 +64,6 @@ export function updateNodeForDocument(context: vscode.ExtensionContext) {
 					queue.push({ test, data });
 				} else {
 					if (data instanceof TestFile && !data.didResolve) {
-						console.log("hahaha", params.key)
 						await data.updateFromDisk(ctrl, test, context, params.key);
 					}
 

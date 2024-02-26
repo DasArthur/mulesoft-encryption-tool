@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import { parseYamlEncryption } from './parser';
 import { encryptDecrypt } from '../encryptionAndDecryption/decryptEncryptFunction';
 import { decrypt } from '../encryptionAndDecryption/decryptFunction';
+import * as path from 'path';
 
 const textDecoder = new TextDecoder('utf-8');
 
@@ -43,22 +44,26 @@ export class TestFile {
 		const thisGeneration = generationCounter++;
 		this.didResolve = true;
 
+
+		const parentId = `${item.uri}/parent`;
+		let parent = controller.items.get(parentId);
+		if (!parent) {
+			parent = controller.createTestItem(parentId, path.basename(item.uri!.fsPath), item.uri);
+			controller.items.add(parent);
+		}
 		
 		parseYamlEncryption(content, {
 			onTest: (range, value, empty, key) => {
-				
-
-
-
 				const data = new TestCase(value, encKey,thisGeneration, context, empty);
 				const id = `${item.uri}/${range.start.line}`;
 
-				let tcase = controller.items.get(id);
+
+				let tcase = parent?.children.get(id);
 
 				if (empty) {
 					if (tcase) {
 						// If the test case exists and should be empty, delete it
-						controller.items.delete(id);
+						parent?.children.delete(id);
 					}
 					// Since the test case is empty, we don't need to do anything else
 					return;
@@ -69,7 +74,7 @@ export class TestFile {
 					tcase = controller.createTestItem(id, key, item.uri);
 					testData.set(tcase, data);
 					tcase.range = range;
-					controller.items.add(tcase);
+					parent?.children.add(tcase);
 				}else{
 					testData.set(tcase, data); // Update the associated data
 					tcase.label = key; // Update the label
@@ -78,8 +83,9 @@ export class TestFile {
 				
 			},
 			onHeading: (range) => {
-
-				// PARENT STRUCTURE CURRENTLY DOES NOT WORK
+				if (parent) {
+					parent.range = range;
+				}
 			}
 		});
 		// ascend(0);
