@@ -159,7 +159,7 @@ function getOrCreateFile(controller: vscode.TestController, uri: vscode.Uri) {
 	}
 
 	const file = controller.createTestItem(uri.toString(), uri.path.split('/').pop()!, uri);
-	controller.items.add(file);
+	// controller.items.add(file); THIS ADD DUPLICATE
 
 	const data = new TestFile();
 	testData.set(file, data);
