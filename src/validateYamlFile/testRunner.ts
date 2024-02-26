@@ -57,8 +57,6 @@ export function updateNodeForDocument(context: vscode.ExtensionContext) {
 				}
 
 				const data = testData.get(test);
-				console.log("test", test.id)
-				console.log("it comes here, no");
 				if (data instanceof TestCase) {
 					run.enqueued(test);
 					queue.push({ test, data });
