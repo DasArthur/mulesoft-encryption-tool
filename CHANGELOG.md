@@ -19,3 +19,7 @@ All notable changes to the "mulesoft-encryption-tool" extension will be document
 
 - Redefined of how to set enc key to remove re-entering details
 - Added testing to see if all secure properties are correctly set so that we don't get bad deployments
+
+## [1.0.7] - 2021-10-14
+
+- Added parent structure to yaml testing
